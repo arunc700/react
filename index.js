@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Demo from './Avatar/demo'
+
 import Home from './home/home'
 import * as serviceWorker from './serviceWorker';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import rootReducer from './Redux/Reducers/rootReducer'
+
+const myStore = createStore(rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(<div>
-    <Home />    
+    <Provider store={myStore}>
+        <Home />
+    </Provider>
+
 </div>
     , document.getElementById('root'));
 //ReactDOM.render(<Home name="Arun Kumar Singh" />, document.getElementById('root'));
